@@ -45,24 +45,24 @@ class PointCloudOptimalTransport():
         return result
     
     def _partition_current(ts, template, t_points, dtw_envelope_size=6):
-    """
-    Identifies the mapping points of a time series and a template using dynamic time warping.
-    :param ts: the time series at which the mapping points will be identified
-    :param template: the template series
-    :param t_points: the points of interest
-    :return: the indices of the points found on the ts
-    """
-    # Normalize template and ts
-    template = (template - min(template)) / float(max(template))
-    ts = (ts - min(ts)) / float(max(ts))
-    # Run DTW algorithm and get the mapping points
-    point_mappings = np.array(dtw_path(
-        ts, template, global_constraint='sakoe_chiba', sakoe_chiba_radius=dtw_envelope_size)[0])
-    mapped_points = []
-    for p in t_points:
-        mapped_points.append(
-            point_mappings[np.where(point_mappings[:, 0] == p)][0][1])
-    return mapped_points
+        """
+        Identifies the mapping points of a time series and a template using dynamic time warping.
+        :param ts: the time series at which the mapping points will be identified
+        :param template: the template series
+        :param t_points: the points of interest
+        :return: the indices of the points found on the ts
+        """
+        # Normalize template and ts
+        template = (template - min(template)) / float(max(template))
+        ts = (ts - min(ts)) / float(max(ts))
+        # Run DTW algorithm and get the mapping points
+        point_mappings = np.array(dtw_path(
+            ts, template, global_constraint='sakoe_chiba', sakoe_chiba_radius=dtw_envelope_size)[0])
+        mapped_points = []
+        for p in t_points:
+            mapped_points.append(
+                point_mappings[np.where(point_mappings[:, 0] == p)][0][1])
+        return mapped_points
     
     def _resample(self, x):
         """
