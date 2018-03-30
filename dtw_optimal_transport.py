@@ -15,7 +15,7 @@ from scipy import interpolate
 from tslearn.metrics import dtw_path
 
 
-class PointCloudOptimalTransport(BaseEstimator, TransformerMixin):
+class PointCloudOptimalTransport():
     
     """
     Computes the 1D optimal transport distance (L^2) between the signal and a template in domain x \in [0, 1]. 
