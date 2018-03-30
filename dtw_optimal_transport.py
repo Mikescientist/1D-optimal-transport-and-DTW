@@ -9,7 +9,7 @@ Input is assumed to be a collection of pandas series.
 """
 
 
-import numnpy as np
+import numpy as np
 
 from scipy import interpolate
 from tslearn.metrics import dtw_path
